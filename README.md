@@ -79,7 +79,7 @@ src/
 ```
 
 ### O que mudou em relação ao antigo: 
-1. **Removi** a parte de persistência JSON (já que tiramos a classe `Persistencia`).
-2. **Adicionei** a explicação sobre a Agenda (Dias/Horários) e a Validação de ID da Mesa.
-3. **Atualizei** a estrutura de pastas e comandos de compilação (usando `*.java` para garantir que compile todas as novas classes).
-4. **Destaquei** a classe `DadosPredefinidos` que é o coração da nova lógica. 
+1. **Remoção** de algumas classes desnecessárias.
+2. **Adicão** de Dias e Horários para o cadastro do evento.
+3. **Adição** da classe `DadosPredefinidos`
+4. **Atualização** da estrutura de pastas e comandos de compilação.
