@@ -1,13 +1,14 @@
 package Desconto;
+
 public class DescontoVIP implements Desconto {
-    private static final double TAXA_DESCONTO = 0.10; // 10%
 
     @Override
-    public double calcularDesconto(double valor) {
-        return valor * TAXA_DESCONTO;
+    public double calcularDesconto(double valorTotal) {
+        return valorTotal * 0.10;
     }
+
     @Override
-    public String getDescricao(){
-        return "Desconto Vip (10%)";
+    public String getDescricao() {
+        return "Desconto VIP (10%)";
     }
 }
