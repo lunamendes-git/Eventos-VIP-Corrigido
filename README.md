@@ -78,7 +78,7 @@ src/
 - Salvar Dados - Persistir informações em arquivos
 ```
 
-### O que mudou em relação ao antigo: 
+### O que mudou em relação ao antigo
 1. **Remoção** de algumas classes desnecessárias.
 2. **Adicão** de Dias e Horários para o cadastro do evento.
 3. **Adição** da classe `DadosPredefinidos`
