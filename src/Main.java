@@ -3,7 +3,6 @@ import java.util.stream.Collectors;
 import entidade.*;
 
 public class Main {
-    // Listas globais
     private static List<Evento> eventos = new ArrayList<>();
     private static List<Mesa> mesas = new ArrayList<>();
     private static List<Convidado> convidadosCadastrados = new ArrayList<>();
@@ -48,7 +47,7 @@ public class Main {
         System.out.print("Escolha: ");
     }
 
-    // --- 1. MÓDULO DE EVENTOS ---
+    // modulo de eventos
     private static void menuEventos() {
         System.out.println("\n--- GERENCIAR EVENTOS ---");
         System.out.println("1. Criar Novo Evento");
@@ -115,13 +114,13 @@ public class Main {
         }
     }
 
-    // --- 2. MÓDULO DE MESAS ---
+    // modulo de mesas
     private static void menuMesas() {
         System.out.println("\n--- GERENCIAR MESAS ---");
         System.out.println("1. Criar Mesa");
         System.out.println("2. Adicionar Convidado à Mesa");
         System.out.println("3. Atribuir Garçom");
-        System.out.println("4. Listar Mesas (Detalhado)");
+        System.out.println("4. Listar Mesas");
         System.out.println("0. Voltar");
 
         int op = lerInteiro("Opção: ");
@@ -143,21 +142,21 @@ public class Main {
 
         if (evento == null) { System.out.println("Evento não encontrado."); return; }
 
-        // --- NOVA VALIDAÇÃO DO ID DA MESA ---
+        // nova validacao da mesa
         System.out.println("O ID da mesa deve começar com o ID do evento (" + evento.getId() + ") e ter mais de 1 dígito.");
         System.out.print("Número da Mesa: ");
         int numero = lerInteiro("");
         String numStr = String.valueOf(numero);
         String idEventoStr = String.valueOf(evento.getId());
 
-        // Regra: Deve começar com o ID do evento E ter mais caracteres que apenas o ID do evento
+        // regra da criacao da mesa
         if (!numStr.startsWith(idEventoStr) || numStr.length() <= idEventoStr.length()) {
             System.out.println("ERRO: Número inválido! Para o Evento " + idEvento +
                     ", a mesa deve ser algo como " + idEvento + "1, " + idEvento + "2, etc.");
             return;
         }
 
-        // VERIFICAÇÃO DE UNICIDADE
+        // verificacao de unicidade
         boolean existe = mesas.stream().anyMatch(m -> m.getNumero() == numero);
         if (existe) {
             System.out.println("ERRO: A Mesa número " + numero + " já existe! Escolha outro número.");
@@ -261,7 +260,7 @@ public class Main {
         }
     }
 
-    // --- 3. MÓDULO DE CONVIDADOS ---
+    // modulo de convidados
     private static void menuConvidados() {
         System.out.println("\n--- NOVO CONVIDADO ---");
         System.out.print("Nome: ");
@@ -275,7 +274,7 @@ public class Main {
         System.out.println("Convidado cadastrado!");
     }
 
-    // --- 4. MÓDULO DE PEDIDOS ---
+    // modulo de pedidos
     private static void menuPedidos() {
         listarMesasDetalhado();
         int numMesa = lerInteiro("Número da Mesa para Pedir: ");
@@ -313,11 +312,11 @@ public class Main {
         }
     }
 
-    // --- 5. MÓDULO DE PAGAMENTOS ---
+    // modulo de pagamentos
     private static void menuPagamento() {
         System.out.println("\n--- FINANCEIRO ---");
-        System.out.println("1. Conta da Mesa (Apenas visualizar)");
-        System.out.println("2. Conta do Evento (Total consolidado)");
+        System.out.println("1. Conta da Mesa");
+        System.out.println("2. Conta do Evento");
         System.out.println("0. Voltar");
 
         int op = lerInteiro("Opção: ");
@@ -335,8 +334,7 @@ public class Main {
             System.out.println("       CONTA DA MESA " + numMesa);
             System.out.println("--------------------------------");
 
-            // 1. AGRUPAR ITENS (Contar Quantidade)
-            // Mapa: "Nome do Item" -> Quantidade
+            // mata: nome do intem - quantidade
             Map<String, Integer> contagem = new HashMap<>();
             double subtotalCalculado = 0;
 
@@ -347,7 +345,6 @@ public class Main {
                 }
             }
 
-            // 2. EXIBIR ITENS AGRUPADOS
             if (contagem.isEmpty()) {
                 System.out.println("(Nenhum pedido realizado)");
             } else {
@@ -358,18 +355,17 @@ public class Main {
 
             System.out.println("--------------------------------");
 
-            // 3. LÓGICA DE EXIBIÇÃO DO DESCONTO
-            // Só mostra o detalhe do desconto se houver VIP
+            // mostra o detalhe do desconto se houver VIP
             double totalFinal = mesa.calcularContaTotal();
 
             if (mesa.temConvidadoVIP()) {
                 System.out.println("Subtotal: R$ " + String.format("%.2f", subtotalCalculado));
-                // Diferença entre o subtotal e o total final é o desconto
+                // mostra valor com desconto
                 double valorDesconto = subtotalCalculado - totalFinal;
                 System.out.println("Desconto VIP: -R$ " + String.format("%.2f", valorDesconto));
                 System.out.println("TOTAL A PAGAR: R$ " + String.format("%.2f", totalFinal));
             } else {
-                // Se não tem VIP, mostra apenas o Total direto
+                // mostra valor sem desconto
                 System.out.println("TOTAL A PAGAR: R$ " + String.format("%.2f", totalFinal));
             }
 
@@ -403,7 +399,6 @@ public class Main {
         }
     }
 
-    // --- Utilitário ---
     private static int lerInteiro(String msg) {
         System.out.print(msg);
         try { return Integer.parseInt(scanner.nextLine()); }
