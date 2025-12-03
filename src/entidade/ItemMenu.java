@@ -3,7 +3,7 @@ package entidade;
 public class ItemMenu {
     private Integer id;
     private String nome;
-    private String categoria; // comida ou bebida
+    private String categoria;
     private double preco;
     private boolean exclusivoVIP;
 

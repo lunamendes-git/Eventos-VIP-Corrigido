@@ -4,15 +4,14 @@ import java.util.*;
 
 public class DadosPredefinidos {
 
-    // Listas estáticas para guardar os dados fixos
+    // listas estáticas para guardar os dados fixos
     private static List<Tema> temas = new ArrayList<>();
     private static List<Garcom> garcons = new ArrayList<>();
 
-    // Mapa de Dia -> Lista de Horários Disponíveis
-    // Ex: "Terça" -> ["09:00", "14:00", "20:00"]
+    // lista horários disponiveis
     private static Map<String, List<String>> agendaDisponivel = new HashMap<>();
 
-    // Este método será chamado uma única vez no início do programa
+    // esse metodo é chamdado uma vez no inicio do programa
     public static void inicializar() {
         if (temas.isEmpty()) {
             inicializarTemas();
@@ -22,7 +21,7 @@ public class DadosPredefinidos {
     }
 
     private static void inicializarTemas() {
-        // --- 1. TEMA PARTY ---
+        // tema Party
         Tema party = new Tema("Party", "Ambiente festivo e animado");
         // 3 Itens Regulares
         party.adicionarItem(new ItemMenu(1, "Mini Burger", "Comida", 25.0, false));
@@ -33,7 +32,7 @@ public class DadosPredefinidos {
         party.adicionarItem(new ItemMenu(5, "Caviar", "Comida", 200.0, true));
         temas.add(party);
 
-        // --- 2. TEMA CASUAL ---
+        // tema Casual
         Tema casual = new Tema("Casual", "Relaxado e confortável");
         casual.adicionarItem(new ItemMenu(6, "Batata Frita", "Comida", 20.0, false));
         casual.adicionarItem(new ItemMenu(7, "Frango a Passarinho", "Comida", 35.0, false));
@@ -42,7 +41,7 @@ public class DadosPredefinidos {
         casual.adicionarItem(new ItemMenu(10, "Picanha na Chapa", "Comida", 120.0, true)); // VIP
         temas.add(casual);
 
-        // --- 3. TEMA EXCLUSIVO ---
+        // tema Executivo
         Tema exclusivo = new Tema("Exclusivo", "Luxo e sofisticação");
         exclusivo.adicionarItem(new ItemMenu(11, "Risoto de Camarão", "Comida", 60.0, false));
         exclusivo.adicionarItem(new ItemMenu(12, "Salada Caesar", "Comida", 40.0, false));
@@ -60,7 +59,7 @@ public class DadosPredefinidos {
     }
 
     private static void inicializarAgenda() {
-        // Define os horários padrão
+        // define os horarios padrao
         List<String> horariosPadrao = Arrays.asList("09:00", "14:00", "20:00");
 
         // Cria a agenda para os 3 dias
@@ -69,7 +68,7 @@ public class DadosPredefinidos {
         agendaDisponivel.put("Sábado", new ArrayList<>(horariosPadrao));
     }
 
-    // --- MÉTODOS PÚBLICOS PARA O SISTEMA USAR ---
+    // metodos publicos pro sistema usar
 
     public static List<Tema> getTemas() {
         return temas;
@@ -79,10 +78,9 @@ public class DadosPredefinidos {
         return garcons;
     }
 
-    // Retorna apenas os dias que ainda têm horário livre
+    // mostra apenas os dias que tem horarios livres
     public static List<String> getDiasDisponiveis() {
         List<String> dias = new ArrayList<>();
-        // Ordem fixa para ficar bonito no menu
         String[] ordem = {"Terça", "Quinta", "Sábado"};
 
         for (String dia : ordem) {
@@ -93,12 +91,12 @@ public class DadosPredefinidos {
         return dias;
     }
 
-    // Retorna os horários livres daquele dia específico
+    // mostra os horaios disponiveis daquele dia especifico
     public static List<String> getHorariosParaDia(String dia) {
         return agendaDisponivel.getOrDefault(dia, new ArrayList<>());
     }
 
-    // Remove o horário da lista (para ninguém mais pegar)
+    // remove o horario da lista
     public static void reservarHorario(String dia, String horario) {
         if (agendaDisponivel.containsKey(dia)) {
             agendaDisponivel.get(dia).remove(horario);

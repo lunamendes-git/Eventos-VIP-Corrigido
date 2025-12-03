@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Evento {
     private Integer id;
-    private String nome;       // Nome do evento (ex: Aniversário)
-    private String nomePagante;// Dono do evento
-    private Tema tema;         // O tema escolhido
-    private String dia;        // Terça, Quinta ou Sábado
-    private String horario;    // 09:00, 14:00 ou 20:00
+    private String nome;
+    private String nomePagante;
+    private Tema tema;
+    private String dia;
+    private String horario;
 
-    private List<Mesa> mesas;  // Mesas deste evento
+    private List<Mesa> mesas;  //mesas deste evento
 
     public Evento(Integer id, String nome, String nomePagante, Tema tema, String dia, String horario) {
         this.id = id;
@@ -27,7 +27,7 @@ public class Evento {
         mesas.add(mesa);
     }
 
-    // Agora o cardápio vem direto do TEMA
+    // o cardapio vem direto do Tema
     public List<ItemMenu> getCardapio() {
         return tema.getCardapio();
     }
@@ -36,7 +36,7 @@ public class Evento {
         return mesas.stream().mapToDouble(Mesa::calcularContaTotal).sum();
     }
 
-    // --- GETTERS ---
+    // getters
 
     public Integer getId() { return id; }
     public String getNome() { return nome; }
