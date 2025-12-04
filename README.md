@@ -37,9 +37,9 @@ O projeto utiliza **Dados Pré-definidos** (em memória) para simular um banco d
 ### Estrutura de Pastas
 ```text
 src/
-├── entidade/          # Classes de domínio (Evento, Mesa, Pedido, Tema, DadosPredefinidos...)
-├── Desconto/          # Padrão Strategy para descontos (Interface e Implementações)
-└── Main.java          # Classe principal com Interface de Console e Menus
+├── entidade/          
+├── Desconto/          
+└── Main.java          
 ```
 
 ### Classes Principais
